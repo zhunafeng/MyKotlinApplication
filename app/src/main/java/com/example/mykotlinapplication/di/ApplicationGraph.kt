@@ -1,9 +1,10 @@
 package com.example.mykotlinapplication.di
 
 import android.app.Application
+import com.example.mykotlinapplication.MainApplication
 import com.example.mykotlinapplication.features.calculate.CalculateModule
+import dagger.BindsInstance
 import dagger.Component
-import dagger.android.AndroidInjection
 import dagger.android.AndroidInjectionModule
 import dagger.android.support.AndroidSupportInjectionModule
 
@@ -13,9 +14,24 @@ import dagger.android.support.AndroidSupportInjectionModule
  *
  *
  */
-@Component(modules = [AndroidInjectionModule::class])
-interface ApplicationGraph{
+@Component(
+    modules = [
+        AndroidInjectionModule::class,
+        ActivitiesModule::class,
+        FragmentsModule::class
+    ]
+)
+interface ApplicationGraph {
 
-    fun inject(application: Application)
+    @Component.Builder
+    interface Builder{
+
+        @BindsInstance
+        fun application(application: Application): Builder
+
+        fun bind(): ApplicationGraph
+    }
+
+    fun inject(application: MainApplication)
 
 }

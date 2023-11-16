@@ -44,13 +44,12 @@ android {
 }
 
 dependencies {
-    val daggerVersion = "2.48.1"
-    implementation("com.google.dagger:dagger:$daggerVersion")
-    kapt("com.google.dagger:dagger-compiler:$daggerVersion")
-
-    implementation("com.google.dagger:dagger-android:$daggerVersion")
-    implementation("com.google.dagger:dagger-android-support:$daggerVersion") // if you use the support libraries
-    annotationProcessor ("com.google.dagger:dagger-android-processor:$daggerVersion")
+    val dagger = "2.47"
+    implementation("com.google.dagger:dagger:$dagger")
+    implementation("com.google.dagger:dagger-android:$dagger")
+    implementation("com.google.dagger:dagger-android-support:$dagger")
+    kapt("com.google.dagger:dagger-compiler:$dagger")
+    kapt("com.google.dagger:dagger-android-processor:$dagger")
 
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.appcompat:appcompat:1.6.1")

@@ -14,7 +14,7 @@ class MainApplication: Application(), HasAndroidInjector {
 
     override fun onCreate() {
         super.onCreate()
-        DaggerApplicationGraph.create().inject(this)
+        DaggerApplicationGraph.builder().application(this).bind().inject(this)
 
     }
 

@@ -19,3 +19,4 @@ class CalculateModule() {
     fun provideRouter(impl: CalculateRouter): CalculateContract.Router = impl
 
 }
+
