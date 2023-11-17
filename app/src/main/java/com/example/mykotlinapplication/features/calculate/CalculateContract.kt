@@ -2,6 +2,7 @@ package com.example.mykotlinapplication.features.calculate
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import dagger.Provides
 
 /**
  * CalculateContract VIPER contract
@@ -12,6 +13,10 @@ interface CalculateContract {
      * Passive view interface. This interface declares behaviors that can modify the View
      */
     interface View {
+
+        fun setResult(input: String)
+
+
 
     }
 
@@ -54,7 +59,7 @@ interface CalculateContract {
         /**
          * calculate the results
          */
-        fun equals(inputs: String)
+        fun calcEquals(inputs: String)
     }
 
     /**

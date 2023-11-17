@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.VisibleForTesting
 import androidx.fragment.app.Fragment
+import com.example.mykotlinapplication.R
 import com.example.mykotlinapplication.databinding.FragmentCalculateBinding
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
@@ -62,11 +63,15 @@ class CalculateFragment : Fragment(), CalculateContract.View {
 
         // Notify Presenter that the View is ready
         presenter.viewLoaded(savedInstanceState)
+        binding.workings.text = "1+2"
 
 
-        binding.equalsBtn.setOnClickListener{
-            presenter.equals(binding.workings.text) // 7 + 1
+        binding.equalsBtn.setOnClickListener {
+            presenter.calcEquals(binding.workings.text as String)
         }
+
+       // onClick(binding.root)
+
     }
 
     override fun onDestroyView() {
@@ -82,6 +87,17 @@ class CalculateFragment : Fragment(), CalculateContract.View {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
     }
+
+    override fun setResult(input: String) {
+        binding.results.text = input
+    }
+
+
+//    override fun onClick(v: View?) {
+//        when(v?.id) {
+//            R.id.equalsBtn -> {presenter.calcEquals(binding.workings.text as String)}
+//        }
+//    }
 
     // endregion
 

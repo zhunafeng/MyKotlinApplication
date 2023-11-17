@@ -12,9 +12,10 @@ class CalculatePresenter @Inject constructor(
 ) : CalculateContract.Presenter, CalculateContract.InteractorOutput {
 
     // region viper lifecycle
+    @Inject
+    internal lateinit var view: CalculateContract.View
 
     override fun attachView(view: CalculateContract.View) {
-
         interactor.attachOutput(this)
     }
 
@@ -30,8 +31,10 @@ class CalculatePresenter @Inject constructor(
         interactor.savePendingState(outState)
     }
 
-    override fun equals(inputs: String) {
-        TODO("Not yet implemented")
+    override fun calcEquals(inputs: String) {
+        interactor.calculateResult(inputs)
+        view.setResult(inputs)
+
     }
 
     // endregion
