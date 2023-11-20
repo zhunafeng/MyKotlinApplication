@@ -1,4 +1,4 @@
-package com.example.mykotlinapplication.features.Success
+package com.example.mykotlinapplication.features.success
 
 import android.os.Bundle
 import javax.inject.Inject

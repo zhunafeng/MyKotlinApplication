@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.OnClickListener
 import android.view.ViewGroup
 import androidx.annotation.VisibleForTesting
 import androidx.fragment.app.Fragment
@@ -17,7 +18,7 @@ import javax.inject.Inject
 /**
  * Calculate VIPER Fragment Implementation
  */
-class CalculateFragment : Fragment(), CalculateContract.View {
+class CalculateFragment : Fragment(), CalculateContract.View, OnClickListener{
 
     @Inject
     internal lateinit var presenter: CalculateContract.Presenter
@@ -65,12 +66,31 @@ class CalculateFragment : Fragment(), CalculateContract.View {
         presenter.viewLoaded(savedInstanceState)
         binding.workings.text = "1+2"
 
+        /**
+        Set binding onClickListeners
+         */
+        binding.equalsBtn.setOnClickListener(this)
 
-        binding.equalsBtn.setOnClickListener {
-            presenter.calcEquals(binding.workings.text as String)
-        }
+        // Values
+        binding.btn0.setOnClickListener(this)
+        binding.btn1.setOnClickListener(this)
+        binding.btn2.setOnClickListener(this)
+        binding.btn3.setOnClickListener(this)
+        binding.btn4.setOnClickListener(this)
+        binding.btn5.setOnClickListener(this)
+        binding.btn6.setOnClickListener(this)
+        binding.btn7.setOnClickListener(this)
+        binding.btn8.setOnClickListener(this)
+        binding.btn9.setOnClickListener(this)
 
-       // onClick(binding.root)
+        // Operators
+        binding.btnAdd.setOnClickListener(this)
+        binding.btnMul.setOnClickListener(this)
+        binding.btnSub.setOnClickListener(this)
+        binding.btnDiv.setOnClickListener(this)
+
+        binding.btnAC.setOnClickListener(this)
+        binding.btnBack.setOnClickListener(this)
 
     }
 
@@ -92,19 +112,18 @@ class CalculateFragment : Fragment(), CalculateContract.View {
         binding.results.text = input
     }
 
+    override fun clearResult(input: String) {
+        binding.workings.text = input
+        binding.results.text = input
+    }
 
-//    override fun onClick(v: View?) {
-//        when(v?.id) {
-//            R.id.equalsBtn -> {presenter.calcEquals(binding.workings.text as String)}
-//        }
-//    }
+    override fun onClick(v: View?) {
+        when(v?.id) {
+            R.id.equalsBtn -> {presenter.calcEquals(binding.workings.text as String)}
+            R.id.btnAC -> {presenter.allClear(binding.workings.text as String)}
+            // R.id.backBtn -> {presenter.backSpace(binding.workings.text as String)}
 
-    // endregion
-
-    // region View contract
-
-    // TODO Add view contract overrides
-
-    // endregion
+        }
+    }
 
 }

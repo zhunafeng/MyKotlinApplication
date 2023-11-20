@@ -11,8 +11,8 @@ import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(), CalculateContract.View {
 
-    @Inject
-    internal lateinit var presenter: CalculateContract.Presenter
+//    @Inject
+//    internal lateinit var presenter: CalculateContract.Presenter
 
     @VisibleForTesting
     internal lateinit var binding: FragmentCalculateBinding
@@ -24,8 +24,13 @@ class MainActivity : AppCompatActivity(), CalculateContract.View {
 
     }
 
-    override fun setResult(input: String) {
+   override fun setResult(input: String) {
         binding.results.text = input
+    }
+
+    override fun clearResult(input: String) {
+        binding.results.text = input
+        binding.workings.text = input
     }
 
 }

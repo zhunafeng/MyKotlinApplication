@@ -1,6 +1,7 @@
 package com.example.mykotlinapplication.features.calculate
 
 import android.os.Bundle
+import com.example.mykotlinapplication.base.ObjectDelegate
 import javax.inject.Inject
 
 /**
@@ -9,16 +10,19 @@ import javax.inject.Inject
 class CalculateInteractor @Inject constructor(
 ) : CalculateContract.InteractorInput {
 
-
+    internal val outputDelegate = ObjectDelegate<CalculateContract.InteractorOutput>()
+    internal val output by outputDelegate
 
     // region viper lifecycle
 
     override fun attachOutput(output: CalculateContract.InteractorOutput) {
+        outputDelegate.attach(output)
 
     }
 
     override fun detachOutput() {
-
+        // coroutineScope.cancelJobs()
+        outputDelegate.detach()
     }
 
     override fun loadData(savedState: Bundle?) {
@@ -30,15 +34,13 @@ class CalculateInteractor @Inject constructor(
     }
 
     override fun calculateResult(input: String) {
-        calculateResults(input)
+        output.loadDataResult(calculateResults(input))
     }
 
-    // endregion
+    override fun clearResult(input: String) {
+        output.clearDataResult(allClearAction(input))
 
-    // region interactor inputs
-
-
-    // endregion
+    }
 
     private fun calculateResults(input: String): String {
         val digitsOperators = digitsOperators(input)
@@ -130,4 +132,43 @@ class CalculateInteractor @Inject constructor(
         }
         return list
     }
+    private fun allClearAction(input: String): String {
+        var clearResult = input
+        clearResult = ""
+
+        return clearResult
+    }
+    private fun backSpaceAction(input: String): String {
+        var backResult = input
+        val length = input.length
+        if (length > 0) {
+            var result = input.subSequence(0, length - 1)
+        }
+        return backResult
+    }
+
+//    fun numberAction(input: String) {
+//        if (view is Button) { if (view.text == ".") {
+//            if(canAddDecimal) {
+//                binding.workings.append(view.text)
+//                canAddDecimal = false
+//            }
+//
+//        }
+//        else
+//            binding.workings.append(view.text)
+//            canAddOperation = true
+//
+//        }
+//
+//    }
+//    fun operationAction(view: View) {
+//        if (view is Button && canAddOperation) {
+//            binding.workings.append(view.text)
+//            canAddOperation = false
+//            canAddDecimal = true
+//
+//
+//        }
+//    }
 }

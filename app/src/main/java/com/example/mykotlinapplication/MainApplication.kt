@@ -22,5 +22,4 @@ class MainApplication: Application(), HasAndroidInjector {
         return dispatchingAndroidInjector
     }
 
-
 }

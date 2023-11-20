@@ -16,6 +16,7 @@ interface CalculateContract {
 
         fun setResult(input: String)
 
+        fun clearResult(input: String)
 
 
     }
@@ -26,6 +27,8 @@ interface CalculateContract {
      * on the View
      */
     interface Presenter {
+
+        fun allClear(input: String)
 
         /**
          * Attach view to the Presenter. This is called on the [Fragment.onAttach] lifecycle event
@@ -59,6 +62,7 @@ interface CalculateContract {
         /**
          * calculate the results
          */
+//        @Provides
         fun calcEquals(inputs: String)
     }
 
@@ -67,6 +71,8 @@ interface CalculateContract {
      * outputs on the [InteractorOutput] interface
      */
     interface InteractorInput {
+
+        fun clearResult(input: String)
 
         /**
          * Attach output to the Interactor. This is called on the [Fragment.onAttach] lifecycle event
@@ -112,7 +118,10 @@ interface CalculateContract {
         /**
          * Called after [InteractorInput.loadData] completes successfully
          */
-        fun loadDataResult() // TODO: define output parameters here, and optionally other output functions for error handling
+        fun loadDataResult(calcResult: String) // TODO: define output parameters here, and optionally other output functions for error handling
+
+        fun clearDataResult(calcResult: String)
+
 
     }
 

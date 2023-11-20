@@ -1,6 +1,7 @@
 package com.example.mykotlinapplication.features.calculate
 
 import android.os.Bundle
+import com.example.mykotlinapplication.base.ObjectDelegate
 import javax.inject.Inject
 
 /**
@@ -12,8 +13,10 @@ class CalculatePresenter @Inject constructor(
 ) : CalculateContract.Presenter, CalculateContract.InteractorOutput {
 
     // region viper lifecycle
-    @Inject
-    internal lateinit var view: CalculateContract.View
+//    @Inject
+//    internal lateinit var view: CalculateContract.View
+    internal val viewDelegate = ObjectDelegate<CalculateContract.View>()
+    internal val view by viewDelegate
 
     override fun attachView(view: CalculateContract.View) {
         interactor.attachOutput(this)
@@ -33,22 +36,21 @@ class CalculatePresenter @Inject constructor(
 
     override fun calcEquals(inputs: String) {
         interactor.calculateResult(inputs)
-        view.setResult(inputs)
-
     }
 
-    // endregion
+    override fun loadDataResult(calcResult: String) {
+        view.setResult(calcResult)
 
-    // region view event handlers
-
-    // TODO Add view event handlers
-
-    // endregion
-
-    // region interactor output
-
-    override fun loadDataResult() {
         // TODO handle result
+    }
+
+    override fun clearDataResult(calcResult: String) {
+        view.clearResult(calcResult)
+    }
+
+    override fun allClear(inputs: String) {
+        interactor.clearResult(inputs)
+
     }
 
     // TODO Add interactor outputs
