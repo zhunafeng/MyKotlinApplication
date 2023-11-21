@@ -19,11 +19,13 @@ class CalculatePresenter @Inject constructor(
     internal val view by viewDelegate
 
     override fun attachView(view: CalculateContract.View) {
+        viewDelegate.attach(view)
         interactor.attachOutput(this)
     }
 
     override fun detachView() {
         interactor.detachOutput()
+        viewDelegate.detach()
     }
 
     override fun viewLoaded(savedState: Bundle?) {
@@ -40,7 +42,6 @@ class CalculatePresenter @Inject constructor(
 
     override fun loadDataResult(calcResult: String) {
         view.setResult(calcResult)
-
         // TODO handle result
     }
 

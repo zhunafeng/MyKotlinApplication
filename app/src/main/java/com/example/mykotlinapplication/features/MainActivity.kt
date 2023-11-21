@@ -1,5 +1,6 @@
 package com.example.mykotlinapplication.features
 
+import android.content.Context
 import android.os.Bundle
 import androidx.annotation.VisibleForTesting
 import androidx.appcompat.app.AppCompatActivity
@@ -32,7 +33,6 @@ class MainActivity : AppCompatActivity(), CalculateContract.View {
         binding.results.text = input
         binding.workings.text = input
     }
-
 }
 
 

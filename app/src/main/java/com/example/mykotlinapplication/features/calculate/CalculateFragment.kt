@@ -35,6 +35,8 @@ class CalculateFragment : Fragment(), CalculateContract.View, OnClickListener{
     override fun onAttach(context: Context) {
         inject()
         super.onAttach(context)
+
+        presenter.attachView(this)
     }
 
     internal fun inject() {
