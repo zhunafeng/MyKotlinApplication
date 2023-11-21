@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.View.OnClickListener
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.annotation.VisibleForTesting
 import androidx.fragment.app.Fragment
 import com.example.mykotlinapplication.R
@@ -18,7 +19,7 @@ import javax.inject.Inject
 /**
  * Calculate VIPER Fragment Implementation
  */
-class CalculateFragment : Fragment(), CalculateContract.View, OnClickListener{
+class CalculateFragment : Fragment(), CalculateContract.View, OnClickListener {
 
     @Inject
     internal lateinit var presenter: CalculateContract.Presenter
@@ -66,7 +67,6 @@ class CalculateFragment : Fragment(), CalculateContract.View, OnClickListener{
 
         // Notify Presenter that the View is ready
         presenter.viewLoaded(savedInstanceState)
-        binding.workings.text = "1+2"
 
         /**
         Set binding onClickListeners
@@ -92,7 +92,7 @@ class CalculateFragment : Fragment(), CalculateContract.View, OnClickListener{
         binding.btnDiv.setOnClickListener(this)
 
         binding.btnAC.setOnClickListener(this)
-        binding.btnBack.setOnClickListener(this)
+        binding.btnBackSpace.setOnClickListener(this)
 
     }
 
@@ -119,12 +119,20 @@ class CalculateFragment : Fragment(), CalculateContract.View, OnClickListener{
         binding.results.text = input
     }
 
+    override fun setWorkings(input: String) {
+        binding.workings.append(input)
+    }
+
     override fun onClick(v: View?) {
         when(v?.id) {
-            R.id.equalsBtn -> {presenter.calcEquals(binding.workings.text as String)}
-            R.id.btnAC -> {presenter.allClear(binding.workings.text as String)}
-            // R.id.backBtn -> {presenter.backSpace(binding.workings.text as String)}
-
+            R.id.equalsBtn -> {presenter.calcEquals(binding.workings.text.toString())}
+            R.id.btnAC -> {presenter.allClear(binding.workings.text.toString())}
+            R.id.btnBackSpace -> {presenter.backSpace(binding.workings.text.toString())}
+            R.id.backBtn -> {presenter.backSpace(binding.workings.text.toString())} // GO BACK BUTTON (Fragment B)
+            // Assigning numberToInput to respective buttons
+            R.id.btn0, R.id.btn1, R.id.btn2, R.id.btn3, R.id.btn4, R.id.btn5, R.id.btn6, R.id.btn7, R.id.btn8, R.id.btn9 -> {presenter.numberToInput((v as Button).text.toString())}
+            // Assigning operationToInput to respective buttons
+            R.id.btnAdd, R.id.btnSub, R.id.btnDiv, R.id.btnMul -> {presenter.operationToInput((v as Button).text.toString())}
         }
     }
 

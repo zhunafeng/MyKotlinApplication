@@ -33,6 +33,10 @@ class MainActivity : AppCompatActivity(), CalculateContract.View {
         binding.results.text = input
         binding.workings.text = input
     }
+
+    override fun setWorkings(input: String) {
+        binding.workings.text = input
+    }
 }
 
 

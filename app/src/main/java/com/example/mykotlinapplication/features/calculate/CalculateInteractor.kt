@@ -1,6 +1,7 @@
 package com.example.mykotlinapplication.features.calculate
 
 import android.os.Bundle
+import com.example.mykotlinapplication.R
 import com.example.mykotlinapplication.base.ObjectDelegate
 import javax.inject.Inject
 
@@ -35,6 +36,20 @@ class CalculateInteractor @Inject constructor(
 
     override fun calculateResult(input: String) {
         output.loadDataResult(calculateResults(input))
+    }
+
+    override fun backSpaceAction(input: String) {
+
+    }
+
+    override fun numberToInput(input: String) {
+        // TODO Input should be able to handle multiple numbers
+        output.loadDataWorkings(input)
+
+    }
+
+    override fun operationToInput(input: String) {
+        output.loadDataWorkings(input)
     }
 
     override fun clearResult(input: String) {
@@ -138,14 +153,14 @@ class CalculateInteractor @Inject constructor(
 
         return clearResult
     }
-    private fun backSpaceAction(input: String): String {
-        var backResult = input
-        val length = input.length
-        if (length > 0) {
-            var result = input.subSequence(0, length - 1)
-        }
-        return backResult
-    }
+//    private fun backSpaceAction(input: String): String {
+//        var backResult = input
+//        val length = input.length
+//        if (length > 0) {
+//            var result = input.subSequence(0, length - 1)
+//        }
+//        return backResult
+//    }
 
 //    fun numberAction(input: String) {
 //        if (view is Button) { if (view.text == ".") {

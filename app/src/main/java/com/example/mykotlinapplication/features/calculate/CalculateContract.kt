@@ -1,8 +1,8 @@
 package com.example.mykotlinapplication.features.calculate
 
 import android.os.Bundle
+import android.widget.Button
 import androidx.fragment.app.Fragment
-import dagger.Provides
 
 /**
  * CalculateContract VIPER contract
@@ -17,6 +17,8 @@ interface CalculateContract {
         fun setResult(input: String)
 
         fun clearResult(input: String)
+
+        fun setWorkings(input: String)
 
 
     }
@@ -64,6 +66,12 @@ interface CalculateContract {
          */
 //        @Provides
         fun calcEquals(inputs: String)
+
+        fun backSpace(inputs: String)
+
+        fun numberToInput(input: String)
+
+        fun operationToInput(input: String)
     }
 
     /**
@@ -108,6 +116,12 @@ interface CalculateContract {
          */
         fun calculateResult(input: String)
 
+        fun backSpaceAction(input: String)
+
+        fun numberToInput(input: String)
+
+        fun operationToInput(input: String)
+
     }
 
     /**
@@ -121,6 +135,8 @@ interface CalculateContract {
         fun loadDataResult(calcResult: String) // TODO: define output parameters here, and optionally other output functions for error handling
 
         fun clearDataResult(calcResult: String)
+
+        fun loadDataWorkings(calcResult: String)
 
 
     }

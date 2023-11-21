@@ -53,7 +53,7 @@
             android:textColor="@color/yellow"/>
         <Button
             style="@style/buttonNumber"
-            android:id="@+id/btnBack"
+            android:id="@+id/btnBackSpace"
             android:text="⌦"
             android:textColor="@color/yellow"/>
         <Button

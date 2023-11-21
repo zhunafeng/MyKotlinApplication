@@ -40,6 +40,18 @@ class CalculatePresenter @Inject constructor(
         interactor.calculateResult(inputs)
     }
 
+    override fun backSpace(inputs: String) {
+        interactor.backSpaceAction(inputs)
+    }
+
+    override fun numberToInput(inputs: String) {
+        interactor.numberToInput(inputs)
+    }
+
+    override fun operationToInput(input: String) {
+        interactor.operationToInput(input)
+    }
+
     override fun loadDataResult(calcResult: String) {
         view.setResult(calcResult)
         // TODO handle result
@@ -49,9 +61,12 @@ class CalculatePresenter @Inject constructor(
         view.clearResult(calcResult)
     }
 
+    override fun loadDataWorkings(calcResult: String) {
+        view.setWorkings(calcResult)
+    }
+
     override fun allClear(inputs: String) {
         interactor.clearResult(inputs)
-
     }
 
     // TODO Add interactor outputs
