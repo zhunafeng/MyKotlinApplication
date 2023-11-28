@@ -123,6 +123,10 @@ class CalculateFragment : Fragment(), CalculateContract.View, OnClickListener {
         binding.workings.append(input)
     }
 
+    override fun setWorkingsBack(input: String) {
+        binding.workings.text = input
+    }
+
     override fun onClick(v: View?) {
         when(v?.id) {
             R.id.equalsBtn -> {presenter.calcEquals(binding.workings.text.toString())}

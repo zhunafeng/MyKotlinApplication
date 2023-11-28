@@ -39,6 +39,12 @@ class CalculateInteractor @Inject constructor(
     }
 
     override fun backSpaceAction(input: String) {
+        var backResult = input
+        val length = input.length
+        if (length > 0) {
+            var result = input.subSequence(0, length - 1).toString()
+            output.loadDataBackSpaced(result)
+        }
 
     }
 

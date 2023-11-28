@@ -65,6 +65,10 @@ class CalculatePresenter @Inject constructor(
         view.setWorkings(calcResult)
     }
 
+    override fun loadDataBackSpaced(calcResult: String) {
+        view.setWorkingsBack(calcResult)
+    }
+
     override fun allClear(inputs: String) {
         interactor.clearResult(inputs)
     }

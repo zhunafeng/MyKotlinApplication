@@ -20,6 +20,8 @@ interface CalculateContract {
 
         fun setWorkings(input: String)
 
+        fun setWorkingsBack(input: String)
+
 
     }
 
@@ -137,6 +139,8 @@ interface CalculateContract {
         fun clearDataResult(calcResult: String)
 
         fun loadDataWorkings(calcResult: String)
+
+        fun loadDataBackSpaced(calcResult: String)
 
 
     }
