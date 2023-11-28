@@ -10,8 +10,10 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.annotation.VisibleForTesting
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import com.example.mykotlinapplication.R
 import com.example.mykotlinapplication.databinding.FragmentCalculateBinding
+import com.example.mykotlinapplication.features.success.SuccessFragment
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
@@ -94,6 +96,8 @@ class CalculateFragment : Fragment(), CalculateContract.View, OnClickListener {
         binding.btnAC.setOnClickListener(this)
         binding.btnBackSpace.setOnClickListener(this)
 
+        binding.btnDec.setOnClickListener(this)
+
     }
 
     override fun onDestroyView() {
@@ -127,16 +131,26 @@ class CalculateFragment : Fragment(), CalculateContract.View, OnClickListener {
         binding.workings.text = input
     }
 
+    private fun replaceFragment(fragment: Fragment) {
+        val fragmentManager = fragment.requireActivity().supportFragmentManager // (not attached to activity error)
+        // val fragmentManager = (activity as FragmentActivity).supportFragmentManager // (gives dagger error)
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.fragment_container_view, fragment)
+        fragmentTransaction.commit()
+    }
+
     override fun onClick(v: View?) {
         when(v?.id) {
             R.id.equalsBtn -> {presenter.calcEquals(binding.workings.text.toString())}
             R.id.btnAC -> {presenter.allClear(binding.workings.text.toString())}
             R.id.btnBackSpace -> {presenter.backSpace(binding.workings.text.toString())}
-            R.id.backBtn -> {presenter.backSpace(binding.workings.text.toString())} // GO BACK BUTTON (Fragment B)
+            R.id.backBtn -> {presenter.backSpace(binding.workings.text.toString())}
             // Assigning numberToInput to respective buttons
             R.id.btn0, R.id.btn1, R.id.btn2, R.id.btn3, R.id.btn4, R.id.btn5, R.id.btn6, R.id.btn7, R.id.btn8, R.id.btn9 -> {presenter.numberToInput((v as Button).text.toString())}
             // Assigning operationToInput to respective buttons
             R.id.btnAdd, R.id.btnSub, R.id.btnDiv, R.id.btnMul -> {presenter.operationToInput((v as Button).text.toString())}
+
+            R.id.btnDec -> {replaceFragment(SuccessFragment())}
         }
     }
 

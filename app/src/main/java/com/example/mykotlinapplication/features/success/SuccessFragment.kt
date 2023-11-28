@@ -11,10 +11,20 @@ import androidx.fragment.app.Fragment
 import com.example.mykotlinapplication.databinding.FragmentSuccessBinding
 import javax.inject.Inject
 
+
 /**
  * Success VIPER Fragment Implementation
  */
 class SuccessFragment : Fragment(), SuccessContract.View {
+
+//    companion object {
+//        val TAG = SuccessFragment::class.java.name
+//
+//        @JvmStatic
+//        fun newInstance(): SuccessFragment {
+//            return SuccessFragment()
+//        }
+//    }
 
     @Inject
     internal lateinit var presenter: SuccessContract.Presenter

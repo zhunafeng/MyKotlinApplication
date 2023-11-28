@@ -49,7 +49,6 @@ class CalculateInteractor @Inject constructor(
     }
 
     override fun numberToInput(input: String) {
-        // TODO Input should be able to handle multiple numbers
         output.loadDataWorkings(input)
 
     }
