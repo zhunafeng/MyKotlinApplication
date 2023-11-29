@@ -131,6 +131,10 @@ class CalculateFragment : Fragment(), CalculateContract.View, OnClickListener {
         binding.workings.text = input
     }
 
+    override fun setWorkingsDec(input: String) {
+        binding.workings.text = "$input."
+    }
+
     private fun replaceFragment(fragment: Fragment) {
         val fragmentManager = fragment.requireActivity().supportFragmentManager // (not attached to activity error)
         // val fragmentManager = (activity as FragmentActivity).supportFragmentManager // (gives dagger error)
@@ -150,7 +154,8 @@ class CalculateFragment : Fragment(), CalculateContract.View, OnClickListener {
             // Assigning operationToInput to respective buttons
             R.id.btnAdd, R.id.btnSub, R.id.btnDiv, R.id.btnMul -> {presenter.operationToInput((v as Button).text.toString())}
 
-            R.id.btnDec -> {replaceFragment(SuccessFragment())}
+//            R.id.btnDec -> {replaceFragment(SuccessFragment())}
+            R.id.btnDec -> {presenter.addDecimal(binding.workings.text.toString())}
         }
     }
 

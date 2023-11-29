@@ -52,6 +52,10 @@ class CalculatePresenter @Inject constructor(
         interactor.operationToInput(input)
     }
 
+    override fun addDecimal(input: String) {
+        interactor.addDecimal(input)
+    }
+
     override fun loadDataResult(calcResult: String) {
         view.setResult(calcResult)
         // TODO handle result
@@ -67,6 +71,10 @@ class CalculatePresenter @Inject constructor(
 
     override fun loadDataBackSpaced(calcResult: String) {
         view.setWorkingsBack(calcResult)
+    }
+
+    override fun loadDecimalWorkings(calcResult: String) {
+        view.setWorkingsDec(calcResult)
     }
 
     override fun allClear(inputs: String) {

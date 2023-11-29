@@ -14,6 +14,10 @@ class CalculateInteractor @Inject constructor(
     internal val outputDelegate = ObjectDelegate<CalculateContract.InteractorOutput>()
     internal val output by outputDelegate
 
+    private var canAddDecimal = true
+    private var canAddOperation = false
+    private var canAddNumber = false
+
     // region viper lifecycle
 
     override fun attachOutput(output: CalculateContract.InteractorOutput) {
@@ -50,11 +54,27 @@ class CalculateInteractor @Inject constructor(
 
     override fun numberToInput(input: String) {
         output.loadDataWorkings(input)
+        canAddOperation = true
 
     }
 
     override fun operationToInput(input: String) {
-        output.loadDataWorkings(input)
+        if (canAddOperation) {
+            output.loadDataWorkings(input)
+            canAddOperation = false
+            canAddDecimal = true
+        }
+    }
+
+    override fun addDecimal(input: String) {
+        if (canAddDecimal) {
+            output.loadDecimalWorkings(input)
+            canAddDecimal = false
+        }
+        if (input == "") {
+            output.loadDecimalWorkings(input)
+            canAddDecimal = false
+        }
     }
 
     override fun clearResult(input: String) {
@@ -158,37 +178,4 @@ class CalculateInteractor @Inject constructor(
 
         return clearResult
     }
-//    private fun backSpaceAction(input: String): String {
-//        var backResult = input
-//        val length = input.length
-//        if (length > 0) {
-//            var result = input.subSequence(0, length - 1)
-//        }
-//        return backResult
-//    }
-
-//    fun numberAction(input: String) {
-//        if (view is Button) { if (view.text == ".") {
-//            if(canAddDecimal) {
-//                binding.workings.append(view.text)
-//                canAddDecimal = false
-//            }
-//
-//        }
-//        else
-//            binding.workings.append(view.text)
-//            canAddOperation = true
-//
-//        }
-//
-//    }
-//    fun operationAction(view: View) {
-//        if (view is Button && canAddOperation) {
-//            binding.workings.append(view.text)
-//            canAddOperation = false
-//            canAddDecimal = true
-//
-//
-//        }
-//    }
 }

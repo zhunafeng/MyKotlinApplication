@@ -22,6 +22,8 @@ interface CalculateContract {
 
         fun setWorkingsBack(input: String)
 
+        fun setWorkingsDec(input: String)
+
 
     }
 
@@ -74,6 +76,8 @@ interface CalculateContract {
         fun numberToInput(input: String)
 
         fun operationToInput(input: String)
+
+        fun addDecimal(input: String)
     }
 
     /**
@@ -124,6 +128,8 @@ interface CalculateContract {
 
         fun operationToInput(input: String)
 
+        fun addDecimal(input: String)
+
     }
 
     /**
@@ -141,6 +147,8 @@ interface CalculateContract {
         fun loadDataWorkings(calcResult: String)
 
         fun loadDataBackSpaced(calcResult: String)
+
+        fun loadDecimalWorkings(calcResult: String)
 
 
     }
