@@ -2,6 +2,7 @@ package com.example.mykotlinapplication.features.calculate
 
 import android.os.Bundle
 import com.example.mykotlinapplication.base.ObjectDelegate
+import com.example.mykotlinapplication.utils.transformerToFloat
 import javax.inject.Inject
 
 /**
@@ -157,13 +158,13 @@ class CalculateInteractor
                 if (character.isDigit() || character == '.') {
                     currentDigit += character
                 } else {
-                    list.add(currentDigit.toFloat())
+                    list.add(currentDigit.transformerToFloat())
                     currentDigit = ""
                     list.add(character)
                 }
             }
             if (currentDigit != "") {
-                list.add(currentDigit.toFloat())
+                list.add(currentDigit.transformerToFloat())
             }
             return list
         }
