@@ -1,19 +1,16 @@
 package com.example.mykotlinapplication.features.calculate
 
 import android.os.Bundle
-import android.widget.Button
 import androidx.fragment.app.Fragment
 
 /**
  * CalculateContract VIPER contract
  */
 interface CalculateContract {
-
     /**
      * Passive view interface. This interface declares behaviors that can modify the View
      */
     interface View {
-
         fun setResult(input: String)
 
         fun clearResult(input: String)
@@ -23,8 +20,6 @@ interface CalculateContract {
         fun setWorkingsBack(input: String)
 
         fun setWorkingsDec(input: String)
-
-
     }
 
     /**
@@ -33,7 +28,6 @@ interface CalculateContract {
      * on the View
      */
     interface Presenter {
-
         fun allClear(input: String)
 
         /**
@@ -68,7 +62,6 @@ interface CalculateContract {
         /**
          * calculate the results
          */
-//        @Provides
         fun calcEquals(inputs: String)
 
         fun backSpace(inputs: String)
@@ -85,7 +78,6 @@ interface CalculateContract {
      * outputs on the [InteractorOutput] interface
      */
     interface InteractorInput {
-
         fun clearResult(input: String)
 
         /**
@@ -129,18 +121,18 @@ interface CalculateContract {
         fun operationToInput(input: String)
 
         fun addDecimal(input: String)
-
     }
 
     /**
      * Outputs of the interactor inputs
      */
     interface InteractorOutput {
-
         /**
          * Called after [InteractorInput.loadData] completes successfully
          */
-        fun loadDataResult(calcResult: String) // TODO: define output parameters here, and optionally other output functions for error handling
+        fun loadDataResult(
+            calcResult: String,
+        ) // TODO: define output parameters here, and optionally other output functions for error handling
 
         fun clearDataResult(calcResult: String)
 
@@ -149,14 +141,10 @@ interface CalculateContract {
         fun loadDataBackSpaced(calcResult: String)
 
         fun loadDecimalWorkings(calcResult: String)
-
-
     }
 
     /**
      * Declares all routes out of the module
      */
-    interface Router {
-
-    }
+    interface Router
 }

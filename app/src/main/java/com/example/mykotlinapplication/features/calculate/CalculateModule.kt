@@ -8,7 +8,6 @@ import dagger.Provides
  */
 @Module
 class CalculateModule() {
-
     @Provides
     fun providePresenter(impl: CalculatePresenter): CalculateContract.Presenter = impl
 
@@ -17,6 +16,4 @@ class CalculateModule() {
 
     @Provides
     fun provideRouter(impl: CalculateRouter): CalculateContract.Router = impl
-
 }
-

@@ -5,10 +5,10 @@ import javax.inject.Inject
 /**
  * Success VIPER Router Implementation
  */
-class SuccessRouter @Inject constructor() : SuccessContract.Router {
-    override fun showHome() {
-        TODO("Not yet implemented")
+class SuccessRouter
+    @Inject
+    constructor() : SuccessContract.Router {
+        override fun showHome() {
+            TODO("Not yet implemented")
+        }
     }
-
-
-}

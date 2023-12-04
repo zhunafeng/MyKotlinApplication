@@ -7,13 +7,10 @@ import androidx.fragment.app.Fragment
  * SuccessContract VIPER contract
  */
 interface SuccessContract {
-
     /**
      * Passive view interface. This interface declares behaviors that can modify the View
      */
-    interface View {
-
-    }
+    interface View
 
     /**
      * Presenter for the module. It's sole purpose is to mediate between the View, Router and
@@ -21,7 +18,6 @@ interface SuccessContract {
      * on the View
      */
     interface Presenter {
-
         fun goBack()
 
         /**
@@ -59,7 +55,6 @@ interface SuccessContract {
      * outputs on the [InteractorOutput] interface
      */
     interface InteractorInput {
-
         /**
          * Attach output to the Interactor. This is called on the [Fragment.onAttach] lifecycle event
          *
@@ -88,19 +83,16 @@ interface SuccessContract {
          * @param outState Bundle to save Interactor state to
          */
         fun savePendingState(outState: Bundle)
-
     }
 
     /**
      * Outputs of the interactor inputs
      */
     interface InteractorOutput {
-
         /**
          * Called after [InteractorInput.loadData] completes successfully
          */
         fun loadDataResult() // TODO: define output parameters here, and optionally other output functions for error handling
-
     }
 
     /**
@@ -108,6 +100,5 @@ interface SuccessContract {
      */
     interface Router {
         fun showHome()
-
     }
 }
