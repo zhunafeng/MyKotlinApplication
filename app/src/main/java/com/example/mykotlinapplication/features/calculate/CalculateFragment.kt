@@ -12,6 +12,7 @@ import androidx.annotation.VisibleForTesting
 import androidx.fragment.app.Fragment
 import com.example.mykotlinapplication.R
 import com.example.mykotlinapplication.databinding.FragmentCalculateBinding
+import com.example.mykotlinapplication.features.success.SuccessFragment
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
@@ -141,12 +142,12 @@ class CalculateFragment : Fragment(), CalculateContract.View, OnClickListener {
         binding.workings.text = "$input."
     }
 
-    private fun replaceFragment(fragment: Fragment) {
-        val fragmentManager = fragment.requireActivity().supportFragmentManager // (not attached to activity error)
-        // val fragmentManager = (activity as FragmentActivity).supportFragmentManager // (gives dagger error)
-        val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.fragment_container_view, fragment)
-        fragmentTransaction.commit()
+    private fun replaceFragment() {
+        // simplify the codes by using scope function
+        requireActivity().supportFragmentManager.beginTransaction().apply {
+            add(R.id.fragment_container_view, SuccessFragment())
+            commit()
+        }
     }
 
     override fun onClick(v: View?) {
@@ -172,10 +173,12 @@ class CalculateFragment : Fragment(), CalculateContract.View, OnClickListener {
                 presenter.operationToInput((v as Button).text.toString())
             }
 
-//            R.id.btnDec -> {replaceFragment(SuccessFragment())}
             R.id.btnDec -> {
-                presenter.addDecimal(binding.workings.text.toString())
+                replaceFragment()
             }
+//            R.id.btnDec -> {
+//                presenter.addDecimal(binding.workings.text.toString())
+//            }
         }
     }
 }

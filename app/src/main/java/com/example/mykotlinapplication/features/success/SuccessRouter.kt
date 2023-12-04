@@ -1,5 +1,7 @@
 package com.example.mykotlinapplication.features.success
 
+import com.example.mykotlinapplication.R
+import com.example.mykotlinapplication.features.calculate.CalculateFragment
 import javax.inject.Inject
 
 /**
@@ -7,8 +9,16 @@ import javax.inject.Inject
  */
 class SuccessRouter
     @Inject
-    constructor() : SuccessContract.Router {
+    constructor(private val fragment: SuccessFragment) :
+    SuccessContract.Router {
         override fun showHome() {
-            TODO("Not yet implemented")
+            replaceFragment()
+        }
+
+        private fun replaceFragment() {
+            fragment.parentFragmentManager.beginTransaction().apply {
+                replace(R.id.fragment_container_view, CalculateFragment())
+                commit()
+            }
         }
     }
