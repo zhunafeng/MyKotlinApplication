@@ -5,6 +5,21 @@ plugins {
     id("org.jlleitschuh.gradle.ktlint") version "12.0.2"
 }
 
-allprojects {
-    apply(plugin = "org.jlleitschuh.gradle.ktlint")
+buildscript {
+    repositories {
+        maven {
+            url = uri("https://plugins.gradle.org/m2/")
+        }
+    }
+    dependencies {
+        classpath("org.jlleitschuh.gradle:ktlint-gradle:12.0.2")
+    }
+}
+
+apply(plugin = "org.jlleitschuh.gradle.ktlint")
+
+tasks.withType<org.jlleitschuh.gradle.ktlint.tasks.GenerateReportsTask> {
+    reportsOutputDirectory.set(
+        project.layout.buildDirectory.dir("other/location/$name"),
+    )
 }
