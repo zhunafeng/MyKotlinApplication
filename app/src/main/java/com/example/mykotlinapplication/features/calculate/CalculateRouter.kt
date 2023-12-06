@@ -5,6 +5,6 @@ import javax.inject.Inject
 /**
  * Calculate VIPER Router Implementation
  */
-class CalculateRouter @Inject constructor() : CalculateContract.Router {
-
-}
+class CalculateRouter
+    @Inject
+    constructor() : CalculateContract.Router

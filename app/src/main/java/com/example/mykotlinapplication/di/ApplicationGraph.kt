@@ -2,11 +2,9 @@ package com.example.mykotlinapplication.di
 
 import android.app.Application
 import com.example.mykotlinapplication.MainApplication
-import com.example.mykotlinapplication.features.calculate.CalculateModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
-import dagger.android.support.AndroidSupportInjectionModule
 
 /**
  * Interface with annotation @Component will make Dagger generate
@@ -18,14 +16,12 @@ import dagger.android.support.AndroidSupportInjectionModule
     modules = [
         AndroidInjectionModule::class,
         ActivitiesModule::class,
-        FragmentsModule::class
-    ]
+        FragmentsModule::class,
+    ],
 )
 interface ApplicationGraph {
-
     @Component.Builder
-    interface Builder{
-
+    interface Builder {
         @BindsInstance
         fun application(application: Application): Builder
 
@@ -33,5 +29,4 @@ interface ApplicationGraph {
     }
 
     fun inject(application: MainApplication)
-
 }

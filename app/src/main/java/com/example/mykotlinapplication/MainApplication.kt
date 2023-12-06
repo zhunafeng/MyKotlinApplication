@@ -7,19 +7,16 @@ import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
 import javax.inject.Inject
 
-
-class MainApplication: Application(), HasAndroidInjector {
+class MainApplication : Application(), HasAndroidInjector {
     @Inject
     lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Any>
 
     override fun onCreate() {
         super.onCreate()
         DaggerApplicationGraph.builder().application(this).bind().inject(this)
-
     }
 
-    override fun androidInjector(): AndroidInjector<Any>{
+    override fun androidInjector(): AndroidInjector<Any> {
         return dispatchingAndroidInjector
     }
-
 }

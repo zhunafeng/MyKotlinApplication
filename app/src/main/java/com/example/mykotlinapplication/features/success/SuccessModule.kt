@@ -8,7 +8,6 @@ import dagger.Provides
  */
 @Module
 class SuccessModule() {
-
     @Provides
     fun providePresenter(impl: SuccessPresenter): SuccessContract.Presenter = impl
 
@@ -17,5 +16,4 @@ class SuccessModule() {
 
     @Provides
     fun provideRouter(impl: SuccessRouter): SuccessContract.Router = impl
-
 }

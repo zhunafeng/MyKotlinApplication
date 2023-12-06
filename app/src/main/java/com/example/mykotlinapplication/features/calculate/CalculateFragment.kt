@@ -10,19 +10,16 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.annotation.VisibleForTesting
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
 import com.example.mykotlinapplication.R
 import com.example.mykotlinapplication.databinding.FragmentCalculateBinding
 import com.example.mykotlinapplication.features.success.SuccessFragment
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
-
 /**
  * Calculate VIPER Fragment Implementation
  */
 class CalculateFragment : Fragment(), CalculateContract.View, OnClickListener {
-
     @Inject
     internal lateinit var presenter: CalculateContract.Presenter
 
@@ -46,7 +43,7 @@ class CalculateFragment : Fragment(), CalculateContract.View, OnClickListener {
         // TODO inject with the default Application injector or the Kit injector if inside a UI Kit
 
         // App Injection:
-         AndroidSupportInjection.inject(this)
+        AndroidSupportInjection.inject(this)
 
         // Library Injection:
         // Sudo<Feature>UIInternal.instance?.inject(this)
@@ -56,12 +53,19 @@ class CalculateFragment : Fragment(), CalculateContract.View, OnClickListener {
 
     // region view setup and state lifecycle
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?,
+    ): View {
         binding = FragmentCalculateBinding.inflate(inflater)
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(
+        view: View,
+        savedInstanceState: Bundle?,
+    ) {
         super.onViewCreated(view, savedInstanceState)
         presenter.attachView(this)
 
@@ -71,7 +75,7 @@ class CalculateFragment : Fragment(), CalculateContract.View, OnClickListener {
         presenter.viewLoaded(savedInstanceState)
 
         /**
-        Set binding onClickListeners
+         Set binding onClickListeners
          */
         binding.equalsBtn.setOnClickListener(this)
 
@@ -97,7 +101,6 @@ class CalculateFragment : Fragment(), CalculateContract.View, OnClickListener {
         binding.btnBackSpace.setOnClickListener(this)
 
         binding.btnDec.setOnClickListener(this)
-
     }
 
     override fun onDestroyView() {
@@ -110,7 +113,11 @@ class CalculateFragment : Fragment(), CalculateContract.View, OnClickListener {
         presenter.saveState(outState)
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+    override fun onActivityResult(
+        requestCode: Int,
+        resultCode: Int,
+        data: Intent?,
+    ) {
         super.onActivityResult(requestCode, resultCode, data)
     }
 
@@ -135,28 +142,43 @@ class CalculateFragment : Fragment(), CalculateContract.View, OnClickListener {
         binding.workings.text = "$input."
     }
 
-    private fun replaceFragment(fragment: Fragment) {
-        val fragmentManager = fragment.requireActivity().supportFragmentManager // (not attached to activity error)
-        // val fragmentManager = (activity as FragmentActivity).supportFragmentManager // (gives dagger error)
-        val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.fragment_container_view, fragment)
-        fragmentTransaction.commit()
-    }
-
-    override fun onClick(v: View?) {
-        when(v?.id) {
-            R.id.equalsBtn -> {presenter.calcEquals(binding.workings.text.toString())}
-            R.id.btnAC -> {presenter.allClear(binding.workings.text.toString())}
-            R.id.btnBackSpace -> {presenter.backSpace(binding.workings.text.toString())}
-            R.id.backBtn -> {presenter.backSpace(binding.workings.text.toString())}
-            // Assigning numberToInput to respective buttons
-            R.id.btn0, R.id.btn1, R.id.btn2, R.id.btn3, R.id.btn4, R.id.btn5, R.id.btn6, R.id.btn7, R.id.btn8, R.id.btn9 -> {presenter.numberToInput((v as Button).text.toString())}
-            // Assigning operationToInput to respective buttons
-            R.id.btnAdd, R.id.btnSub, R.id.btnDiv, R.id.btnMul -> {presenter.operationToInput((v as Button).text.toString())}
-
-//            R.id.btnDec -> {replaceFragment(SuccessFragment())}
-            R.id.btnDec -> {presenter.addDecimal(binding.workings.text.toString())}
+    private fun replaceFragment() {
+        // simplify the codes by using scope function
+        requireActivity().supportFragmentManager.beginTransaction().apply {
+            add(R.id.fragment_container_view, SuccessFragment())
+            commit()
         }
     }
 
+    override fun onClick(v: View?) {
+        when (v?.id) {
+            R.id.equalsBtn -> {
+                presenter.calcEquals(binding.workings.text.toString())
+            }
+            R.id.btnAC -> {
+                presenter.allClear(binding.workings.text.toString())
+            }
+            R.id.btnBackSpace -> {
+                presenter.backSpace(binding.workings.text.toString())
+            }
+            R.id.backBtn -> {
+                presenter.backSpace(binding.workings.text.toString())
+            }
+            // Assigning numberToInput to respective buttons
+            R.id.btn0, R.id.btn1, R.id.btn2, R.id.btn3, R.id.btn4, R.id.btn5, R.id.btn6, R.id.btn7, R.id.btn8, R.id.btn9 -> {
+                presenter.numberToInput((v as Button).text.toString())
+            }
+            // Assigning operationToInput to respective buttons
+            R.id.btnAdd, R.id.btnSub, R.id.btnDiv, R.id.btnMul -> {
+                presenter.operationToInput((v as Button).text.toString())
+            }
+
+            R.id.btnDec -> {
+                replaceFragment()
+            }
+//            R.id.btnDec -> {
+//                presenter.addDecimal(binding.workings.text.toString())
+//            }
+        }
+    }
 }

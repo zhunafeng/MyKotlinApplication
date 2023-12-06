@@ -6,18 +6,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.VisibleForTesting
-import dagger.android.support.AndroidSupportInjection
 import androidx.fragment.app.Fragment
 import com.example.mykotlinapplication.databinding.FragmentSuccessBinding
+import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
-
 
 /**
  * Success VIPER Fragment Implementation
  */
 class SuccessFragment : Fragment(), SuccessContract.View {
-
-//    companion object {
+    //    companion object {
 //        val TAG = SuccessFragment::class.java.name
 //
 //        @JvmStatic
@@ -57,17 +55,24 @@ class SuccessFragment : Fragment(), SuccessContract.View {
 
     // region view setup and state lifecycle
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?,
+    ): View {
         binding = FragmentSuccessBinding.inflate(inflater)
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(
+        view: View,
+        savedInstanceState: Bundle?,
+    ) {
         super.onViewCreated(view, savedInstanceState)
         presenter.attachView(this)
 
         // TODO setup view, event listeners etc.
-        binding.backBtn.setOnClickListener{
+        binding.backBtn.setOnClickListener {
             presenter.goBack()
         }
 
@@ -92,5 +97,4 @@ class SuccessFragment : Fragment(), SuccessContract.View {
     // TODO Add view contract overrides
 
     // endregion
-
 }
