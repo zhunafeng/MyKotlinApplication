@@ -67,9 +67,7 @@ class SplashFragment : Fragment(), SplashContract.View, View.OnClickListener {
         presenter.attachView(this)
 
         // TODO setup view, event listeners etc.
-        binding.continueBtn.setOnClickListener {
-            presenter.goToCalculateFragment()
-        }
+        binding.continueBtn.setOnClickListener(this)
 
         // Notify Presenter that the View is ready
         presenter.viewLoaded(savedInstanceState)

@@ -16,7 +16,6 @@ class CalculateInteractor
 
         private var canAddDecimal = true
         private var canAddOperation = false
-        private var canAddNumber = false
 
         // region viper lifecycle
 
@@ -158,21 +157,19 @@ class CalculateInteractor
                 if (character.isDigit() || character == '.') {
                     currentDigit += character
                 } else {
-                    list.add(currentDigit.transformerToFloat())
+                    list.add(currentDigit.toFloat())
                     currentDigit = ""
                     list.add(character)
                 }
             }
             if (currentDigit != "") {
-                list.add(currentDigit.transformerToFloat())
+                list.add(currentDigit.toFloat())
             }
             return list
         }
 
-        private fun allClearAction(input: String): String {
-            var clearResult = input
-            clearResult = ""
+    private fun allClearAction(input: String): String {
 
-            return clearResult
-        }
+        return ""
+    }
     }

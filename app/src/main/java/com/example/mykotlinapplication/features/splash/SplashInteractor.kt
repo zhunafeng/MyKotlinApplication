@@ -11,7 +11,7 @@ class SplashInteractor
     @Inject
     constructor() : SplashContract.InteractorInput {
 
-    internal val outputDelegate = ObjectDelegate<CalculateContract.InteractorOutput>()
+    internal val outputDelegate = ObjectDelegate<SplashContract.InteractorOutput>()
     internal val output by outputDelegate
     override fun attachOutput(output: SplashContract.InteractorOutput) {
         outputDelegate.attach(output)

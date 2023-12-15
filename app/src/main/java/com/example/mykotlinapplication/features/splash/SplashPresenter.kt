@@ -42,25 +42,9 @@ class SplashPresenter
         }
 
     override fun goToCalculateFragment() {
-        TODO("Not yet implemented")
+
     }
-
-
-    // endregion
-
-        // region view event handlers
-
-        // TODO Add view event handlers
-
-        // endregion
-
-        // region interactor output
-
-        override fun loadDataResult() {
-            // TODO handle result
+    override fun loadDataResult() {
         }
 
-        // TODO Add interactor outputs
-
-        // endregion
 }
