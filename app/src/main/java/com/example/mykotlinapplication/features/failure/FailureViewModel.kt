@@ -1,4 +1,6 @@
 package com.example.mykotlinapplication.features.failure
 
-class FailureViewModel {
+import androidx.lifecycle.ViewModel
+
+class FailureViewModel : ViewModel() {
 }

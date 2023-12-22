@@ -1,5 +1,6 @@
 package com.example.mykotlinapplication.features
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.annotation.VisibleForTesting
 import androidx.appcompat.app.AppCompatActivity
@@ -22,41 +23,3 @@ class MainActivity : AppCompatActivity(), SplashContract.View {
     }
 
 }
-
-
-
-
-//class MainActivity : AppCompatActivity(), CalculateContract.View {
-//    //    @Inject
-////    internal lateinit var presenter: CalculateContract.Presenter
-//
-//    @VisibleForTesting
-//    internal lateinit var binding: FragmentCalculateBinding
-//
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        AndroidInjection.inject(this)
-//        super.onCreate(savedInstanceState)
-//        setContentView(R.layout.activity_main)
-//    }
-//
-//    override fun setResult(input: String) {
-//        binding.results.text = input
-//    }
-//
-//    override fun clearResult(input: String) {
-//        binding.results.text = input
-//        binding.workings.text = input
-//    }
-//
-//    override fun setWorkings(input: String) {
-//        binding.workings.text = input
-//    }
-//
-//    override fun setWorkingsBack(input: String) {
-//        binding.workings.text = input
-//    }
-//
-//    override fun setWorkingsDec(input: String) {
-//        binding.workings.text = "$input."
-//    }
-//}

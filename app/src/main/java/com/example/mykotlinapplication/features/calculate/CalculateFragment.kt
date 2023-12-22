@@ -1,5 +1,6 @@
 package com.example.mykotlinapplication.features.calculate
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -8,10 +9,13 @@ import android.view.View
 import android.view.View.OnClickListener
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.VisibleForTesting
 import androidx.fragment.app.Fragment
 import com.example.mykotlinapplication.R
 import com.example.mykotlinapplication.databinding.FragmentCalculateBinding
+import com.example.mykotlinapplication.features.MainActivity
 import com.example.mykotlinapplication.features.success.SuccessFragment
 import dagger.android.support.AndroidSupportInjection
 import java.util.Timer
@@ -47,13 +51,7 @@ class CalculateFragment : Fragment(), CalculateContract.View, OnClickListener {
         // App Injection:
         AndroidSupportInjection.inject(this)
 
-        // Library Injection:
-        // Sudo<Feature>UIInternal.instance?.inject(this)
     }
-
-    // endregion
-
-    // region view setup and state lifecycle
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -103,6 +101,14 @@ class CalculateFragment : Fragment(), CalculateContract.View, OnClickListener {
         binding.btnBackSpace.setOnClickListener(this)
 
         binding.btnDec.setOnClickListener(this)
+
+        val startForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val intent = result.data
+
+                // Handle the Intent
+            }
+        }
     }
 
     override fun onDestroyView() {
@@ -161,6 +167,7 @@ class CalculateFragment : Fragment(), CalculateContract.View, OnClickListener {
                     Timer().schedule(timerTask {
                         replaceFragment()
                     }, 500)
+                   // startForResult.launch(Intent(requireContext(), SuccessFragment::class.java))
                 }
                 else {
                     // TODO: Something happens when a value isn't inputted to be calculated
