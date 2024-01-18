@@ -101,5 +101,7 @@ interface SplashContract {
      */
     interface Router {
 
+        fun showHome()
+
     }
 }

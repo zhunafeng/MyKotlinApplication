@@ -84,11 +84,12 @@ class SplashFragment : Fragment(), SplashContract.View, View.OnClickListener {
     }
 
     private fun replaceFragment() {
-        // simplify the codes by using scope function
-        requireActivity().supportFragmentManager.beginTransaction().apply {
-            add(R.id.fragment_container_view, CalculateFragment())
-            commit()
-        }
+//        // simplify the codes by using scope function
+//        requireActivity().supportFragmentManager.beginTransaction().apply {
+//            add(R.id.fragment_container_view, CalculateFragment())
+//            commit()
+//        }
+        presenter.goToCalculateFragment()
     }
     override fun onClick(v: View?) {
 

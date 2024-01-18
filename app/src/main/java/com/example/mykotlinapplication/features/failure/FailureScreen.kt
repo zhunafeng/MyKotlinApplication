@@ -21,7 +21,7 @@ import com.example.mykotlinapplication.R
 object FailureScreen {
     enum class UiState {
         /** Show the delete account button and the information panel */
-        SHOW_DELETE,
+        SHOW_FAILURE,
 
         /** Show the confirmation dialogue */
         SHOW_CONFIRMATION
@@ -72,7 +72,7 @@ private fun FailureScreenContent(
 @Composable
 fun FailureScreenPreview() {
         FailureScreen(
-            FailureScreen.UiState.SHOW_DELETE,
+            FailureScreen.UiState.SHOW_FAILURE,
             {},
         )
 

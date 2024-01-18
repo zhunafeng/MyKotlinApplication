@@ -82,6 +82,14 @@ class CalculatePresenter
             interactor.clearResult(inputs)
         }
 
+         override fun goToSuccessFragment() {
+            router.showResult()
+        }
+
+        override  fun goToFailureFragment() {
+            router.showFailure()
+        }
+
         // TODO Add interactor outputs
 
         // endregion

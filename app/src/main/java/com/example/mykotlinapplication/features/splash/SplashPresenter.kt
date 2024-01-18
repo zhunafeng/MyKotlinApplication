@@ -42,7 +42,7 @@ class SplashPresenter
         }
 
     override fun goToCalculateFragment() {
-
+        router.showHome()
     }
     override fun loadDataResult() {
         }

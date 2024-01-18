@@ -28,6 +28,11 @@ interface CalculateContract {
      * on the View
      */
     interface Presenter {
+
+        fun goToFailureFragment()
+
+        fun goToSuccessFragment()
+
         fun allClear(input: String)
 
         /**
@@ -146,5 +151,9 @@ interface CalculateContract {
     /**
      * Declares all routes out of the module
      */
-    interface Router
+    interface Router {
+        fun showResult()
+
+        fun showFailure()
+    }
 }

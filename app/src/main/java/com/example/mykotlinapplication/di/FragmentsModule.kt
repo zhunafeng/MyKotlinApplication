@@ -2,6 +2,8 @@ package com.example.mykotlinapplication.di
 
 import com.example.mykotlinapplication.features.calculate.CalculateFragment
 import com.example.mykotlinapplication.features.calculate.CalculateModule
+import com.example.mykotlinapplication.features.failure.FailureFragment
+import com.example.mykotlinapplication.features.failure.FailureModule
 import com.example.mykotlinapplication.features.splash.SplashFragment
 import com.example.mykotlinapplication.features.splash.SplashModule
 import com.example.mykotlinapplication.features.success.SuccessFragment
@@ -19,4 +21,7 @@ abstract class FragmentsModule {
 
     @ContributesAndroidInjector(modules = [SuccessModule::class])
     abstract fun contributeSuccessFragmentAndroidInjector(): SuccessFragment
+
+    @ContributesAndroidInjector(modules = [FailureModule::class])
+    abstract fun contributeFailureFragmentAndroidInjector(): FailureFragment
 }

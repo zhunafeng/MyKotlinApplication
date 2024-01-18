@@ -152,10 +152,11 @@ class CalculateFragment : Fragment(), CalculateContract.View, OnClickListener {
 
     private fun replaceFragment() {
         // simplify the codes by using scope function
-        requireActivity().supportFragmentManager.beginTransaction().apply {
-            add(R.id.fragment_container_view, SuccessFragment())
-            commit()
-        }
+//        requireActivity().supportFragmentManager.beginTransaction().apply {
+//            add(R.id.fragment_container_view, SuccessFragment())
+//            commit()
+//        }
+        presenter.goToSuccessFragment()
     }
 
     override fun onClick(v: View?) {
@@ -170,8 +171,7 @@ class CalculateFragment : Fragment(), CalculateContract.View, OnClickListener {
                    // startForResult.launch(Intent(requireContext(), SuccessFragment::class.java))
                 }
                 else {
-                    // TODO: Something happens when a value isn't inputted to be calculated
-
+                    presenter.goToFailureFragment()
                 }
             }
             R.id.btnAC -> {
